@@ -1,0 +1,87 @@
+
+<Login>:
+
+    canvas:
+        Color:
+            #rgba:0, 51, 102,0.3
+            rgba:255, 255, 255,0.3
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout
+        id: login_layout
+        orientation: 'vertical'
+        padding: [100,50,100,100]
+        spacing: 10
+        font_name: 'templates/Blueberry .ttf'
+        #background_color:(100, 63, 61,1)
+
+        MDLabel:
+            text: 'Login'
+            font_size: 76
+            font_name: 'templates/Blueberry .ttf'
+            theme_text_color: "Custom"
+            text_color: .11, .15, .16, 1
+            pos_hint: {'center_x':0.65,'center_y':0.85}
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint:1,0.1
+            Label:
+                id:wrong_data
+                text:""
+                font_size: 15
+                halign: 'left'
+                color:100, 63, 61,1
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDTextField:
+                id: login
+                mode: 'rectangle'
+                hint_text: "login"
+
+
+                font_size: self.height/3
+
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDTextField:
+                id: password
+                mode: 'rectangle'
+                hint_text: "password"
+                icon_right: 'eye-off'
+                password:True
+                font_size: self.height/3
+        FloatLayout:
+            padding:10
+            MDCheckbox:
+                size_hint: None, None
+                size: "48dp", "48dp"
+                pos_hint: {'center_x': .38, 'center_y': .5}
+            MDLabel:
+                size_hint: 1, 0
+                text: "Remember me"
+                pos_hint: {'center_x':0.45,'center_y':0.5}
+            MDFlatButton:
+                text: "FORGET PASSWORD"
+                text_color: .29, .40, .45, 1
+                pos_hint: {'center_x':0.8,'center_y':0.5}
+
+        MDFlatButton:
+            text: 'Sign in'
+            font_size: 24
+            size_hint:1,0.5
+            md_bg_color: .1, .85, .77, 1
+            font_style: 'BUTTON'
+            text_color: .29, .40, .45, 1
+            on_release: root.do_login(login.text, password.text)
+        MDFlatButton:
+            text:'Create account'
+            font_size:20
+            size_hint:1,0.5
+            font_style: 'BUTTON'
+            text_color: .29, .40, .45, 1
+            on_release:root.manager.current='signup'

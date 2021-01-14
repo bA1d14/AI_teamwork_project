@@ -1,0 +1,54 @@
+<Homepage>:
+
+    MDBackdrop:
+        right_action_items: [["map-marker", lambda x: root.show_location()],["map-search", lambda x: app.callback_1()], ["dots-vertical", lambda x: app.callback_2()]]
+        MDBackdropBackLayer:
+            Carousel:
+                MDFloatLayout:
+                    MDCard:
+                        size_hint: .9, .58
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        MDLabel:
+                            text: "Advice 1"
+                            halign: "center"
+                MDFloatLayout:
+                    MDCard:
+                        size_hint: .9, .58
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        MDLabel:
+                            text: "Advice 2"
+                            halign: "center"
+        MDBackdropFrontLayer:
+            BoxLayout:
+                orientation:'vertical'
+                BoxLayout:
+                    size_hint:1,.8
+                    spacing:1
+                    orientation:'vertical'
+                    MDLabel:
+                        size_hint: 1, .5
+                        halign:'center'
+                        text: 'Your location:'
+                    BoxLayout:
+                        size_hint: .8, 3
+                        id:map_container
+                        cols:1
+                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                    MDLabel:
+                        size_hint: 1, .5
+                        halign:'center'
+
+                        text:'Wrong? Try to choose your location'
+                    MDFlatButton:
+                        size_hint: .5, .5
+
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        theme_text_color: 'Custom'
+                        text_color: 0, 0, 1, 1
+                        text:"Choose location"
+                        md_bg_color: 0.1, 0.1, 0.1, 0.1
+
+                        on_release:root.manager.current="mapScreen"
+
+                BoxLayout:

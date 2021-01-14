@@ -1,0 +1,2 @@
+class MapRouteScreen():
+    pass

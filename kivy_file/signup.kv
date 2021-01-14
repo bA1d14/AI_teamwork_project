@@ -1,0 +1,105 @@
+<Signup>:
+    canvas:
+        Color:
+            rgba:256, 256, 256,0.2
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MDIconButton:
+        id:back_to_login_page
+        icon:"page-previous"
+        size_hint:0.1,0.1
+        pos_hint: {'center_x':0.6,'center_y':0.85}
+        user_font_size: "30sp"
+
+        #md_bg_color: .1, .85, .77, 1
+        pos_hint:None,None
+        pos_hint: { 'top' : 1}
+        on_release:root.manager.current = 'login'
+    BoxLayout
+        id: login_layout
+        orientation: 'vertical'
+
+        padding: [100,100,100,100]
+        spacing: 10
+        font_name: 'templates/Blueberry .ttf'
+        #background_color:(100, 63, 61,1)
+
+        MDLabel:
+            text: 'CREATE\nACCOUNT'
+            bold: True
+            theme_text_color: "Custom"
+            text_color: .11, .15, .16, 1
+            size_hint: 1, 0
+            font_style: 'H3'
+            pos_hint: {'center_x':0.6,'center_y':0.85}
+
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+
+            MDTextField:
+                id: name
+                multiline:False
+                hint_text: "username"
+                mode: "rectangle"
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDTextField:
+                id: email
+                mode: "rectangle"
+                multiline:False
+                hint_text: "e-mail"
+        BoxLayout:
+            orientation: 'vertical'
+
+
+
+            MDTextField:
+                id: login
+                mode: "rectangle"
+                multiline:False
+                hint_text: "login"
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Password'
+                halign: 'left'
+                font_size: 20
+
+
+            MDTextField:
+                id: password
+                icon_right: 'eye-off'
+                mode: "rectangle"
+                multiline:False
+                hint_text: "password"
+                password:True
+
+
+
+
+        Label:
+            id:wrong_data
+            text:''
+            font_size:20
+            size_hint:1,0.2
+            halign: 'left'
+            color:rgba(255,10,0)
+            font_name:'templates/badinput.ttf'
+        MDFlatButton:
+            text: "LOGIN"
+            font_style: 'BUTTON'
+            md_bg_color: .1, .85, .77, 1
+            font_size:self.height/3
+            size_hint:1,0.5
+            text_color: .29, .40, .45, 1
+            on_press:root.do_signup(name=name.text,email=email.text,login=login.text, parol=password.text)
