@@ -37,6 +37,16 @@ class Database():
         self.cur.execute(select_statement)
         print(self.cur.fetchall())
 
+    def select_route_by_name(self, rout_name,**kwargs):
+
+        self.cur.execute("SELECT * FROM route WHERE rname= %s", (rout_name,))
+        result=self.cur.fetchall()
+        if result:
+            return result
+        else:
+            return []
+
+
     def authentication(self,login,parol):
         self.cur.execute("SELECT id FROM user_information WHERE login=%s AND parol= %s",(login,parol))
 

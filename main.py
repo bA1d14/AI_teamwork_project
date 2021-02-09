@@ -2,6 +2,8 @@
 from kivy import Config
 from kivy.clock import Clock
 from kivymd.app import MDApp
+
+from models.MapRouteScreen import MapRouteScreen
 from models.MapScreen import MapScreen
 from kivy.core.window import Window
 from kivy.lang import Builder
@@ -40,6 +42,8 @@ class Homepage(Screen):
         self.map.marker=MapMarkerPopup(lat=lat, lon=lon)
         self.map.add_marker(self.map.marker)
         self.map.center_on(lat, lon)
+    def routeScreen(self):
+        self.manager.current="mapRouteScreen"
 
 
 class TouristApp(MDApp):
@@ -57,6 +61,7 @@ class TouristApp(MDApp):
         self.manager.add_widget(Signup(name='signup'))
         self.manager.add_widget(Homepage(name='homepage'))
         self.manager.add_widget(MapScreen(name="mapScreen"))
+        self.manager.add_widget(MapRouteScreen(name="mapRouteScreen"))
         Window.size = (480, 640)
 
         return self.manager
