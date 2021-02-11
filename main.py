@@ -11,6 +11,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from data import db
 import os
 
+from models.filterScreen import FilterScreen
+
+
 class Login(Screen):
     def do_login(self, loginText, passwordText):
         if db.authentication(loginText, passwordText):
@@ -62,6 +65,7 @@ class TouristApp(MDApp):
         self.manager.add_widget(Homepage(name='homepage'))
         self.manager.add_widget(MapScreen(name="mapScreen"))
         self.manager.add_widget(MapRouteScreen(name="mapRouteScreen"))
+        self.manager.add_widget(FilterScreen(name='filterScreen'))
         Window.size = (480, 640)
 
         return self.manager

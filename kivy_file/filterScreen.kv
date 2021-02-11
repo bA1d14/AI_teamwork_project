@@ -1,0 +1,156 @@
+<MyMDChip@MDChip>:
+
+    radius:[dp(10)]
+    text_color: 0,0,0,1
+    color:1,1,1, 1
+    selected_chip_color: .1, .5, 1, 0.3
+    selected_chip_text_color:rgba(0,100,255,255)
+    icon:''
+
+
+
+<FilterScreen>:
+
+    MDToolbar:
+        pos_hint:{'center_x':0.5,'center_y':0.96}
+        title: "Filter"
+        md_bg_color: rgba(256,256,256,256)
+        elevation: 6
+        specific_text_color:0,0,0,1
+        anchor_title: 'center'
+        left_action_items: [["close", lambda x: root.close()]]
+
+    MDLabel:
+        text: "Complexity"
+        pos_hint:{'center_x':0.6,'top':0.95}
+        size_hint:1,0.2
+        font_size:17
+    MDChooseChip:
+        id:complexity_chip_container
+        spacing:0
+        pos_hint:{'center_x':0.6,'center_y':0.75}
+        canvas:
+            Color:
+                rgba: .0, .0, 0, .2
+            Line:
+                width: 0.3
+                joint:'round'
+                cap:'round'
+                rounded_rectangle: (self.x*0.96, self.y*0.999, self.width*0.805, self.height*1.03,10,10,10,10)
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text:"All"
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text:"easy"
+
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text: "normal"
+
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text: "hard"
+
+
+
+    MDLabel:
+        text: "Rating"
+        pos_hint:{'center_x':0.6,'top':0.75}
+        size_hint:1,0.2
+        font_size:17
+    MDChooseChip:
+        spacing:0
+        id:rating_chip_container
+        pos_hint:{'center_x':0.6,'center_y':0.55}
+        canvas:
+            Color:
+                rgba: .0, .0, 0, .2
+            Line:
+                width: 0.3
+                joint:'round'
+                cap:'round'
+                rounded_rectangle: (self.x*0.96, self.y*0.999, self.width*0.805, self.height*1.03,10,10,10,10)
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text:"All"
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text:"3+"
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text: "4+"
+
+
+        MyMDChip:
+            size:root.width*0.2,root.height*0.08
+            text: "5+"
+
+    MDLabel:
+        text: "Length"
+        pos_hint:{'center_x':0.6,'top':0.53}
+        size_hint:1,0.2
+        font_size:17
+
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: .0, .0, 0, .5
+            Line:
+                width: 0.5
+                joint:'round'
+                cap:'round'
+                rectangle: (self.x*2.36, self.y*1.12, self.width*0.09, self.height*0.005)
+        id:input_container
+        orientation:'horizontal'
+        spacing:self.width*0.4
+        pos_hint:{'center_x':0.5,'center_y':0.4}
+        size_hint:None,None
+        size: root.width*0.6,root.height*0.2
+        MDTextField:
+
+            hint_text:'From'
+            mode: "rectangle"
+        MDTextField:
+
+            hint_text:'To'
+            mode: "rectangle"
+
+    BoxLayout:
+        id:button_container
+        orientation:'horizontal'
+        spacing:self.width*0.05
+        pos_hint:{'center_x':0.5,'center_y':0.15}
+        size_hint:None,None
+        size: root.width*0.8,root.height*0.2
+        MDFlatButton:
+            text: "Cancel"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 0.8
+            size_hint:1.1,0.3
+            canvas:
+                Color:
+                    rgba: .0, .0, 0, .2
+                Line:
+                    width: 0.5
+                    joint:'round'
+                    cap:'round'
+                    rectangle: (self.x, self.y, self.width, self.height)
+            on_release:root.cancel()
+        MDRaisedButton:
+            text: "Apply"
+            font_size:self.height*0.4
+            md_bg_color: 0, 0, 1, 0.7
+            size_hint:1.1,0.3
+
