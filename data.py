@@ -39,7 +39,8 @@ class Database():
 
     def select_route_by_name(self, rout_name,**kwargs):
 
-        self.cur.execute("SELECT * FROM route WHERE rname= %s", (rout_name,))
+        select_statement=self.cur.mogrify("SELECT * FROM route WHERE rname= %s AND rcomplexity IN %s AND rlength BETWEEN %s AND %s AND rating>=%s ", (rout_name,*kwargs.values(),))
+        self.cur.execute("SELECT * FROM route WHERE rname= %s AND rcomplexity IN %s AND rlength BETWEEN %s AND %s AND rating>=%s  ", (rout_name,*kwargs.values(),))
         result=self.cur.fetchall()
         if result:
             return result

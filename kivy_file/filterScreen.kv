@@ -7,7 +7,13 @@
     selected_chip_text_color:rgba(0,100,255,255)
     icon:''
 
-
+<MyMDTextField@MDTextField>:
+    mode: "rectangle"
+    input_filter :'float'
+    error_color:1,0,0,0.9
+    line_anim:True
+    on_text:self.text_valid(self.text)
+    line_color_normal:1,0,0,1
 
 <FilterScreen>:
 
@@ -26,7 +32,7 @@
         size_hint:1,0.2
         font_size:17
     MDChooseChip:
-        id:complexity_chip_container
+        id:complexity
         spacing:0
         pos_hint:{'center_x':0.6,'center_y':0.75}
         canvas:
@@ -41,24 +47,24 @@
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text:"All"
-
+            data:('easy','normal','hard')
 
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text:"easy"
-
+            data:('easy',)
 
 
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text: "normal"
-
+            data:('normal',)
 
 
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text: "hard"
-
+            data:('hard',)
 
 
     MDLabel:
@@ -68,7 +74,7 @@
         font_size:17
     MDChooseChip:
         spacing:0
-        id:rating_chip_container
+        id:rating
         pos_hint:{'center_x':0.6,'center_y':0.55}
         canvas:
             Color:
@@ -81,22 +87,21 @@
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text:"All"
-
+            data:0.
 
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text:"3+"
-
+            data:3.
 
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text: "4+"
-
-
+            data:4.
         MyMDChip:
             size:root.width*0.2,root.height*0.08
             text: "5+"
-
+            data:5.
     MDLabel:
         text: "Length"
         pos_hint:{'center_x':0.6,'top':0.53}
@@ -118,14 +123,15 @@
         pos_hint:{'center_x':0.5,'center_y':0.4}
         size_hint:None,None
         size: root.width*0.6,root.height*0.2
-        MDTextField:
-
+        MyMDTextField:
+            id:min_length
             hint_text:'From'
-            mode: "rectangle"
-        MDTextField:
 
+
+        MyMDTextField:
+            id:max_length
             hint_text:'To'
-            mode: "rectangle"
+
 
     BoxLayout:
         id:button_container
@@ -153,4 +159,4 @@
             font_size:self.height*0.4
             md_bg_color: 0, 0, 1, 0.7
             size_hint:1.1,0.3
-
+            on_release:root.filter()

@@ -55,6 +55,6 @@ class Map(MapView, TouchBehavior):
 
     def on_map_relocated(self, *kwargs):
         if App.get_running_app().manager.current == 'mapRouteScreen':
-            print("")
+            pass
 
 map=Map()

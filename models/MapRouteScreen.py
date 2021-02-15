@@ -4,23 +4,33 @@ from kivymd.uix.list import OneLineListItem, ThreeLineAvatarIconListItem, ThreeL
 from models.lineMapLayer import LineMapLayer
 
 class Route():
-    def __init__(self,id,name,coordinates,complexity,length):
+    def __init__(self,id,name,coordinates,complexity,length,rating):
         self.id=id
         self.name=name
         self.coordinates=coordinates
         self.complexity=complexity
         self.length=length
-
+        self.rating =rating
 class MapRouteScreen(Screen):
     def __init__(self, **kwargs):
         super(MapRouteScreen, self).__init__(**kwargs)
         self.line=LineMapLayer()
         self.ids['route_map'].add_layer(self.line,mode="scatter")
         self.list_of_Routes=[]
+        self.filter_data={'complexity':('easy','normal','hard'),
+              'min_length':0.,
+              'max_length':99999.,
+                'rating':0}
+    @property
+    def filter_data(self):
+        return
 
+    @filter_data.setter
+    def filter_data(self, value):
+        self._filter_data=value
     def find_route(self,name):
         from data import db
-        routes=db.select_route_by_name(name)
+        routes=db.select_route_by_name(name,**self._filter_data)
         OneLineListItem
         for route in routes:
             self.list_of_Routes.append(Route(*route))
