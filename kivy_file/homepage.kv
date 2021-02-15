@@ -1,8 +1,12 @@
 <Homepage>:
 
     MDBackdrop:
-        right_action_items: [["map-marker", lambda x: root.show_location()],["map-search", lambda x: root.routeScreen() ], ["dots-vertical", lambda x: app.callback_2()]]
+        back_layer_color:app.theme_cls.primary_color
+        header:False
+        left_action_items:[['lightbulb-on-outline',lambda x: self.open()],]
+        right_action_items: [["map-marker", lambda x: root.show_location()],["map-search", lambda x: root.routeScreen() ], ["account", lambda x: app.callback_2()]]
         MDBackdropBackLayer:
+
             Carousel:
                 MDFloatLayout:
                     MDCard:
@@ -19,36 +23,38 @@
                             text: "Advice 2"
                             halign: "center"
         MDBackdropFrontLayer:
-            BoxLayout:
+
+
+            FloatLayout:
+                size_hint:None,None
+                size:root.width,root.height*1
+
+                #spacing:1
                 orientation:'vertical'
                 BoxLayout:
-                    size_hint:1,.8
-                    spacing:1
-                    orientation:'vertical'
-                    MDLabel:
-                        size_hint: 1, .5
-                        halign:'center'
-                        text: 'Your location:'
-                    BoxLayout:
-                        size_hint: .8, 3
-                        id:map_container
-                        cols:1
-                        pos_hint: {"center_x": .5, "center_y": .5}
+                    size_hint: None,None
+                    size:root.width,root.height*1
 
-                    MDLabel:
-                        size_hint: 1, .5
-                        halign:'center'
+                    radius: [30, 30, 30, 0]
+                    id:map_container
+                    cols:1
+                    pos_hint: {"center_x": .5, "center_y": .4}
 
-                        text:'Wrong? Try to choose your location'
-                    MDFlatButton:
-                        size_hint: .5, .5
 
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                        theme_text_color: 'Custom'
-                        text_color: 0, 0, 1, 1
-                        text:"Choose location"
-                        md_bg_color: 0.1, 0.1, 0.1, 0.1
+                MDFlatButton:
+                    size_hint: None,None
+                    size:root.width,root.height*0.05
 
-                        on_release:root.manager.current="mapScreen"
+                    pos_hint: {"center_x": .5, "top": 0.05}
+                    theme_text_color: 'Custom'
+                    text_color: 0, 0, 1, 0.9
+                    text:"Wrong? Try to choose your location"
+                    md_bg_color: 0.1, 0.1, 0.1, 0.1
 
-                BoxLayout:
+                    on_release:root.manager.current="mapScreen"
+                MDFloatingActionButton:
+                    icon: "crosshairs-gps"
+
+                    pos_hint: {"center_x": .9, "top": 0.25}
+                    md_bg_color: 1,1,1,0.9
+                    on_release:root.show_location()

@@ -2,6 +2,8 @@
 from kivy import Config
 from kivy.clock import Clock
 from kivymd.app import MDApp
+from kivymd.uix.backdrop import MDBackdropFrontLayer
+from kivymd.uix.boxlayout import MDBoxLayout
 
 from models.MapRouteScreen import MapRouteScreen
 from models.MapScreen import MapScreen
@@ -86,3 +88,4 @@ class TouristApp(MDApp):
 if __name__ == '__main__':
     Clock.max_iteration = 100
     TouristApp().run()
+MDBoxLayout
