@@ -46,15 +46,23 @@ class Database():
             return result
         else:
             return []
-
+    def select_favorite_routes(self,id):
+        self.cur.execute(
+            "SELECT r.* FROM route r inner join favorite_route f on f.route_id=r.id WHERE f.user_id=%s  ",
+            (id,))
+        result = self.cur.fetchall()
+        if result:
+            return result
+        else:
+            return []
 
     def authentication(self,login,parol):
-        self.cur.execute("SELECT id FROM user_information WHERE login=%s AND parol= %s",(login,parol))
-
-        if self.cur.fetchall() :
-            return True
+        self.cur.execute("SELECT * FROM user_information WHERE login=%s AND parol= %s",(login,parol))
+        user_information=self.cur.fetchall()
+        if user_information :
+            return user_information
         else:
-            return False
+            return None
 
 
 

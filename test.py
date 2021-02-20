@@ -1,95 +1,65 @@
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-from kivy.uix.screenmanager import Screen
 
-from kivymd.icon_definitions import md_icons
 from kivymd.app import MDApp
-from kivymd.uix.list import OneLineIconListItem
+from kivymd.uix.card import MDCardSwipe
+
+KV = '''
+<SwipeToDeleteItem>:
+    size_hint_y: None
+    height: content.height
+
+    MDCardSwipeLayerBox:
+        # Content under the card.
+
+    MDCardSwipeFrontBox:
+
+        # Content of card.
+        OneLineListItem:
+            id: content
+            text: root.text
+            _no_ripple_effect: True
 
 
-Builder.load_string(
-    '''
-#:import images_path kivymd.images_path
+Screen:
 
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
 
-<CustomOneLineIconListItem>:
+        MDToolbar:
+            elevation: 10
+            title: "MDCardSwipe"
 
-    IconLeftWidget:
-        icon: root.icon
-
-
-<PreviousMDIcons>:
-
-    MDBoxLayout:
-        orientation: 'vertical'
-        spacing: dp(10)
-        padding: dp(20)
-
-        MDBoxLayout:
-            adaptive_height: True
-
-            MDIconButton:
-                icon: 'magnify'
-
-            MDTextField:
-                id: search_field
-                hint_text: 'Search icon'
-                on_text: root.set_list_md_icons(self.text, True)
-
-        RecycleView:
-            id: rv
-            key_viewclass: 'viewclass'
-            key_size: 'height'
-
-            RecycleBoxLayout:
-                padding: dp(10)
-                default_size: None, dp(48)
-                default_size_hint: 1, None
-                size_hint_y: None
-                height: self.minimum_height
-                orientation: 'vertical'
+        ScrollView:
+            scroll_timeout : 50
+            MDList:
+                id: md_list
+                padding: 0
 '''
-)
 
 
-class CustomOneLineIconListItem(OneLineIconListItem):
-    icon = StringProperty()
+class SwipeToDeleteItem(MDCardSwipe):
+    '''Card with `swipe-to-delete` behavior.'''
+
+    text = StringProperty()
 
 
-class PreviousMDIcons(Screen):
-
-    def set_list_md_icons(self, text="", search=False):
-        '''Builds a list of icons for the screen MDIcons.'''
-
-        def add_icon_item(name_icon):
-            self.ids.rv.data.append(
-                {
-                    "viewclass": "CustomOneLineIconListItem",
-                    "icon": name_icon,
-                    "text": name_icon,
-                    "callback": lambda x: x,
-                }
-            )
-
-        self.ids.rv.data = []
-        for name_icon in md_icons.keys():
-            if search:
-                if text in name_icon:
-                    add_icon_item(name_icon)
-            else:
-                add_icon_item(name_icon)
-
-
-class MainApp(MDApp):
+class TestCard(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.screen = PreviousMDIcons()
+        self.screen = Builder.load_string(KV)
 
     def build(self):
         return self.screen
 
     def on_start(self):
-        self.screen.set_list_md_icons()
+        '''Creates a list of cards.'''
+
+        for i in range(20):
+            self.screen.ids.md_list.add_widget(
+                SwipeToDeleteItem(text=f"One-line item {i}")
+            )
 
 
-MainApp().run()
+TestCard().run()

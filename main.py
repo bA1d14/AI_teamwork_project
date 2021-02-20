@@ -1,6 +1,8 @@
 
 from kivy import Config
 from kivy.clock import Clock
+from kivy.utils import get_color_from_hex
+
 from kivymd.app import MDApp
 from kivymd.uix.backdrop import MDBackdropFrontLayer
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -13,14 +15,22 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from data import db
 import os
 
+from models.favorite_route_screen import FavoriteRouteScreen
 from models.filterScreen import FilterScreen
+from models.user import User
+from models.user_screens import UserScreen
 
 
 class Login(Screen):
     def do_login(self, loginText, passwordText):
-        if db.authentication(loginText, passwordText):
+        user_information=db.authentication(loginText, passwordText)
+        if user_information:
             print("authentication...")
+            user=User(*user_information[0])
+            self.manager.add_widget(UserScreen(name='userScreen'))
+            self.manager.add_widget(FavoriteRouteScreen(name='favoriteRouteScreen'))
             self.manager.current = 'homepage'
+
         else:
             self.ids['wrong_data'].text = "Wrong password or login"
 
@@ -47,8 +57,12 @@ class Homepage(Screen):
         self.map.marker=MapMarkerPopup(lat=lat, lon=lon)
         self.map.add_marker(self.map.marker)
         self.map.center_on(lat, lon)
+    def userScreen(self):
+        self.manager.current = "userScreen"
     def routeScreen(self):
         self.manager.current="mapRouteScreen"
+    def favorite_route_screen(self):
+        self.manager.current ='favoriteRouteScreen'
 
 
 class TouristApp(MDApp):
@@ -88,4 +102,3 @@ class TouristApp(MDApp):
 if __name__ == '__main__':
     Clock.max_iteration = 100
     TouristApp().run()
-MDBoxLayout

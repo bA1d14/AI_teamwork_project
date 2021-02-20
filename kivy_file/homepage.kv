@@ -4,7 +4,7 @@
         back_layer_color:app.theme_cls.primary_color
         header:False
         left_action_items:[['lightbulb-on-outline',lambda x: self.open()],]
-        right_action_items: [["map-marker", lambda x: root.show_location()],["map-search", lambda x: root.routeScreen() ], ["account", lambda x: app.callback_2()]]
+        right_action_items: [["heart", lambda x: root.favorite_route_screen()],["map-search", lambda x: root.routeScreen() ], ["account", lambda x: root.userScreen()]]
         MDBackdropBackLayer:
 
             Carousel:

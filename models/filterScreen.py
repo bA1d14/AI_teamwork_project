@@ -139,9 +139,9 @@ class FilterScreen(Screen):
             text_input.text=''
     def filter(self):
         data={'complexity':('easy','normal','hard'),
-              'rating':0,
               'min_length':0.,
-              'max_length':99999.}
+              'max_length':99999.,
+              'rating':0}
 
         for id in ['complexity','rating']:
             for chip in self.ids[id].children:

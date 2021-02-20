@@ -23,15 +23,17 @@ class MapRouteScreen(Screen):
                 'rating':0}
     @property
     def filter_data(self):
-        return
+        return self._filter_data
 
     @filter_data.setter
     def filter_data(self, value):
         self._filter_data=value
     def find_route(self,name):
         from data import db
-        routes=db.select_route_by_name(name,**self._filter_data)
-        OneLineListItem
+        routes=db.select_route_by_name(name,**self.filter_data)
+        self.ids['button_container'].clear_widgets()
+        self.list_of_Routes.clear()
+
         for route in routes:
             self.list_of_Routes.append(Route(*route))
 
@@ -42,8 +44,11 @@ class MapRouteScreen(Screen):
                                                                                 tertiary_text='length-{0} km'.format(str(route.length))
                                                                                 ,bg_color=(256,256,256,230),on_release=lambda *args: self.drow_route(route.coordinates)
                                                                                 ))
-
-
     def drow_route(self,coordinates):
         self.ids['button_container'].clear_widgets()
         self.line.coordinates=coordinates
+        
+    def filter(self):
+        self.manager.current = "filterScreen"
+        self.ids['button_container'].clear_widgets()
+        self.list_of_Routes.clear()
