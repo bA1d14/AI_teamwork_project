@@ -18,6 +18,7 @@ class UserMeta(type):
 class User(metaclass=UserMeta):
     def __init__(self, id, name, email,login,password):
         self.__name = name
+
         self.__id = id
         self.__login = login
         self.__email = email

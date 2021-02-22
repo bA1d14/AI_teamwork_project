@@ -1,12 +1,13 @@
-
+import json
 from kivy import Config
 from kivy.clock import Clock
+from kivy.properties import StringProperty
+from kivy.uix.widget import Widget
 from kivy.utils import get_color_from_hex
-
 from kivymd.app import MDApp
 from kivymd.uix.backdrop import MDBackdropFrontLayer
 from kivymd.uix.boxlayout import MDBoxLayout
-
+from kivymd.uix.floatlayout import MDFloatLayout
 from models.MapRouteScreen import MapRouteScreen
 from models.MapScreen import MapScreen
 from kivy.core.window import Window
@@ -14,7 +15,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from data import db
 import os
-
 from models.favorite_route_screen import FavoriteRouteScreen
 from models.filterScreen import FilterScreen
 from models.user import User
@@ -29,12 +29,18 @@ class Login(Screen):
             user=User(*user_information[0])
             self.manager.add_widget(UserScreen(name='userScreen'))
             self.manager.add_widget(FavoriteRouteScreen(name='favoriteRouteScreen'))
+            self.manager.add_widget(Homepage(name='homepage'))
             self.manager.current = 'homepage'
 
         else:
             self.ids['wrong_data'].text = "Wrong password or login"
 
-
+class AdviceLayer(MDFloatLayout):
+    name=StringProperty()
+    image_url=StringProperty()
+    text=StringProperty()
+    def __init__(self,**kwargs):
+        super(AdviceLayer, self).__init__(**kwargs)
 class Homepage(Screen):
     def __init__(self,**kvargs):
         super(Homepage, self).__init__(**kvargs)
@@ -46,6 +52,16 @@ class Homepage(Screen):
 
     def on_pre_enter(self, *args):
         self.show_location()
+        self.add_advice()
+    def add_advice(self):
+        with open('templates/advice.json') as json_file:
+            data=json.load(json_file)
+            for advice in data["advices"]:
+                self.ids['advices'].add_widget(AdviceLayer(name=advice['name'],
+                                                           image_url=advice['image_url'],
+                                                           text=advice['text']))
+    def on_leave(self, *args):
+        self.ids['advices'].clear_widgets()
 
     def show_location(self):
         from models.location import location
@@ -78,7 +94,6 @@ class TouristApp(MDApp):
         self.manager.add_widget(Login(name='login'))
         from models.sign_up import Signup
         self.manager.add_widget(Signup(name='signup'))
-        self.manager.add_widget(Homepage(name='homepage'))
         self.manager.add_widget(MapScreen(name="mapScreen"))
         self.manager.add_widget(MapRouteScreen(name="mapRouteScreen"))
         self.manager.add_widget(FilterScreen(name='filterScreen'))
