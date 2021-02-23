@@ -1,0 +1,55 @@
+{
+  "advices": [
+    {
+      "name": "Stay Calm",
+      "image_url": "templates/image/advice_img/Stay-Calm-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Managing your attitude is key. Stay calm and take stock of your resources and immediate survival needs. It’s okay to be a little afraid, but don’t allow yourself to succumb to it. Determination is survival."
+    },
+    {
+      "name": "Make Shelter",
+      "image_url":"templates/image/advice_img/Make-Shelter-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Ideally, you’ve brought a tarp or other item that can be used as shelter. If not, you’ll need to build something from your available resources. A lean-to is insufficient on its own, so add sides and insulation by filling gaps between logs and sticks with smaller twigs, pine needles, and leaves."
+    },
+    {
+      "name": "Collect Water",
+      "image_url":"templates/image/advice_img/Collect-Water-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Finding water is your second highest survival priority. Be wary of standing water such as lakes or puddles, as these can be full of pathogens and bacteria.\n\nA running stream or river is best, but even this water should be purified before drinking. Boil the water over a fire, or make a water filter (see below)."
+    },
+    {
+      "name": "Start a Fire",
+      "image_url":"templates/image/advice_img/Start-a-Fire-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Start your fire with a small tinder bundle made of leaves, grass, small twigs, or pine needles. With luck, you’ve brought along a flint and steel or a lighter. If not, improvise a magnifying glass with water and a clear plastic bag to amplify the sun’s rays and start a fire."
+    },
+    {
+      "name": "Keep The Fire Burning",
+      "image_url":"templates/image/advice_img/surviving-in-the-wilderness.jpg",
+      "text": "Once your fire is started, make sure the oxygen can flow. To this end, stack your fuel in a cone shape around your burning tinder. Add smaller branches and logs first and get them burning well before you add thicker, longer-burning logs."
+    },
+    {
+      "name": "Navigate",
+      "image_url":"templates/image/advice_img/Use-Your-Watch-To-Navigate-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Learning to navigate is important. A compass is handy, but there are other tricks you can use to find your way.\n\nRemember that the sun rises in the east and sets in the west. Find the North Star using the Big Dipper constellation — the North Star is at the end of the Dipper’s handle."
+    },
+    {
+      "name": "Carry Two Signal Mirrors",
+      "image_url":"templates/image/advice_img/Carry-Two-Signal-Mirrors-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "If rescuers are flying to find you, use two mirrors to catch their attention. One signal mirror isn’t always reliable because of the varying angles of the sun. Use the second mirror to reflect light off the first to ensure you are seen from above."
+    },
+    {
+      "name": "Catch Small Game",
+      "image_url":"templates/image/advice_img/Catch-Small-Game-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "It takes too much energy to hunt large animals, so focus on rabbits, squirrels, and fish for meat. Learn to make a snare to catch them, or make a spear out of sharpened sticks.\n\nBonus tip: use the bones and skin of the animal to make tools and small pouches, and be sure to discard the entrails far from your location to avoid attracting predator animals."
+    },
+    {
+      "name": "Create A Smoke Signal",
+      "image_url":"templates/image/advice_img/Create-A-Smoke-Signal-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "The smoke from your campfire is not enough to attract rescuers’ attention. Make a smoke signal with material such as pine and spruce leaves to create thick, heavy smoke. Camp on high ground to be more easily seen."
+    },
+    {
+      "name": "Make A Water Filter",
+      "image_url":"templates/image/advice_img/Make-A-Water-Filter-Tactics-And-Techniques-To-Master-Wilderness-Survival.jpg",
+      "text": "Much of the water in the wild must be filtered to remove dirt, debris, and other contaminants. Use an empty bottle or container and poke small holes into it with your knife or a sharpened stick.\n\nThen fill the bottle up to two inches with a layer of coarse gravel, a layer of coarse sand, some ground charcoal from your fire, and a layer of fine sand. Pour the water in, and as it travels through each layer, impurities will be filtered out."
+    }
+  ]
+}
+

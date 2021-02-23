@@ -1,0 +1,44 @@
+<MyThreeLineListItem>:
+
+<SwipeToDeleteItem>:
+    size_hint_y: None
+    height: content.height
+
+    MDCardSwipeLayerBox:
+        padding: "8dp"
+
+        MDIconButton:
+            icon: "trash-can"
+            pos_hint: {"center_y": .5}
+            on_release: app.remove_item(root)
+
+    MDCardSwipeFrontBox:
+
+        MyThreeLineListItem:
+            id: content
+            text: root.text
+            secondary_text:root.secondary_text
+            tertiary_text:root.tertiary_text
+
+            on_release:root.callback(self)
+            _no_ripple_effect: True
+
+
+
+<FavoriteRouteScreen>
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_light
+
+        MDToolbar:
+            id: toolbar
+            title: "Favorite"
+
+            right_action_items: [["magnify", lambda x: root.f()], ["dots-vertical", lambda x: root.f()]]
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 0, 0, 0, 1
+
+        ScrollView:
+            scroll_timeout : 100
+            MDList:
+                id: selection_list
